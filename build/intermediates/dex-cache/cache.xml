@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/Users/gretel/AndroidStudioProjects/ToDoApp/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="/Users/gretel/AndroidStudioProjects/ToDoApp/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_394ea0629c183b79945a1b85192be9252e2ceae2/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/gretel/AndroidStudioProjects/ToDoApp/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="9a31be268f3b7138d13eaf9587608ccde8d1c7b8">
+        <dex dex="/Users/gretel/AndroidStudioProjects/ToDoApp/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_df81d12da1ffe4dfc6e51f1817211274504bfbe2/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/gretel/.android/build-cache/525a445b730336b378ae826a72fdfb3e66c8eb4e/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="c5e6490573cd2cc8018417f60ddd251138b6ed61">
+        <dex dex="/Users/gretel/AndroidStudioProjects/ToDoApp/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_b18f31f5160fa90b2636e2d994c92efbf19b3f7f/classes.dex" />
+    </item>
+
+</items>
