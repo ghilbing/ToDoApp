@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/activity_margin"
+        tools:context=".EditorActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:elevation="8dp"
+        android:background="?attr/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+
+    </android.support.v7.widget.Toolbar>
+
+        <!-- Overview category -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- Label -->
+            <TextView
+                android:text="@string/category_overview"
+                style="@style/CategoryStyle" />
+
+            <!-- Input fields -->
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:paddingLeft="4dp"
+                android:orientation="vertical">
+
+                <!-- Name field -->
+
+                <EditText
+                    android:id="@+id/edit_task_name"
+                    android:hint="@string/hint_task_name"
+                    android:inputType="textCapWords"
+                    style="@style/EditorFieldStyle" />
+
+                <!-- Note field -->
+                <EditText
+                    android:id="@+id/edit_task_note"
+                    android:hint="@string/hint_task_note"
+                    android:inputType="textCapWords"
+                    style="@style/EditorFieldStyle" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <!--Due Date -->
+        <LinearLayout
+            android:id="@+id/container_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!--Label -->
+            <TextView
+                android:text="@string/due_date"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                style="@style/CategoryStyle" />
+
+            <TextView
+                android:id="@+id/showDate"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:hint="@string/add_date"
+                android:paddingLeft="5dp"
+                android:paddingTop="15dp"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/btnPicDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableLeft="@android:drawable/ic_menu_my_calendar"
+                android:onClick="datePicker"
+                android:text="" />
+
+        </LinearLayout>
+
+        <!-- Priority -->
+        <LinearLayout
+            android:id="@+id/container_priority"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- Label -->
+            <TextView
+                android:text="@string/category_priority"
+                style="@style/CategoryStyle"
+                android:paddingBottom="16dp"/>
+
+
+        </LinearLayout>
+
+
+    <FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/activity_vertical_margin">
+
+    <!-- Linear layout that contains all three priority buttons (high, medium, low)
+        in a single line -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:weightSum="3">
+
+        <Button
+            android:id="@+id/buttonP1"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/materialRed"
+            android:capitalize="sentences"
+            android:onClick="onPrioritySelected"
+            android:text="@string/high_priority"
+            android:textColor="@android:color/primary_text_light"
+            android:textSize="10sp" />
+
+        <Button
+            android:id="@+id/buttonP2"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/materialBlue"
+            android:capitalize="sentences"
+            android:onClick="onPrioritySelected"
+            android:text="@string/med_priority"
+            android:textColor="@android:color/primary_text_light"
+            android:textSize="10sp" />
+
+        <Button
+            android:id="@+id/buttonP3"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/materialGreen"
+            android:capitalize="sentences"
+            android:onClick="onPrioritySelected"
+            android:text="@string/low_priority"
+            android:textColor="@android:color/primary_text_light"
+            android:textSize="10sp" />
+
+    </LinearLayout>
+
+    <!-- RadioGroup for visible selection of a priority -->
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:weightSum="3">
+
+        <RadioButton
+            android:id="@+id/radButton1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onPrioritySelected"
+            android:layout_weight="1"
+            android:theme="@style/WhiteRadioButton"/>
+
+        <RadioButton
+            android:id="@+id/radButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onPrioritySelected"
+            android:layout_weight="1"
+            android:theme="@style/WhiteRadioButton"/>
+
+        <RadioButton
+            android:id="@+id/radButton3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onPrioritySelected"
+            android:layout_weight="1"
+            android:theme="@style/WhiteRadioButton"/>
+
+    </RadioGroup>
+
+</FrameLayout>
+
+    <!-- Status -->
+    <LinearLayout
+        android:id="@+id/status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Label -->
+        <TextView
+            android:text="@string/status"
+            style="@style/CategoryStyle"
+            android:paddingBottom="16dp"/>
+
+        </LinearLayout>
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/activity_vertical_margin">
+
+        <!-- Linear layout that contains all three priority buttons (high, medium, low)
+            in a single line -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:weightSum="2">
+
+            <Button
+                android:id="@+id/buttonStatusP1"
+                style="@style/Widget.AppCompat.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/materialRed"
+                android:capitalize="sentences"
+                android:onClick="onStatusSelected"
+                android:text="@string/status_to_do"
+                android:textColor="@android:color/primary_text_light"
+                android:textSize="10sp" />
+
+            <Button
+                android:id="@+id/buttonStatusP2"
+                style="@style/Widget.AppCompat.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/materialGreen"
+                android:capitalize="sentences"
+                android:onClick="onStatusSelected"
+                android:text="@string/status_done"
+                android:textColor="@android:color/primary_text_light"
+                android:textSize="10sp" />
+
+
+        </LinearLayout>
+
+        <!-- RadioGroup for visible selection of a status -->
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:weightSum="2">
+
+            <RadioButton
+                android:id="@+id/radStatusButton1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onStatusSelected"
+                android:layout_weight="1"
+                android:theme="@style/WhiteRadioButton"/>
+
+            <RadioButton
+                android:id="@+id/radStatusButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onStatusSelected"
+                android:layout_weight="1"
+                android:theme="@style/WhiteRadioButton"/>
+
+        </RadioGroup>
+
+
+    </FrameLayout>
+
+    <!--Borrar
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <Button
+            android:id="@+id/saveBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableLeft="@android:drawable/ic_menu_save"
+            android:text="Save" />
+
+        <Button
+            android:id="@+id/deleteBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableLeft="@android:drawable/ic_menu_delete"
+            android:text="Delete" />
+    </LinearLayout> -->
+
+
+</LinearLayout>
+
