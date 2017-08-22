@@ -15,7 +15,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -27,15 +26,17 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.gretel.todoapp.adapters.TaskCursorAdapter;
 import com.example.gretel.todoapp.data.TaskContract;
 
 import java.util.Calendar;
+
 
 public class EditorActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>, View.OnClickListener {
 
     //Identifier for the task data loader
     private static final int EXISTING_TASK_LOADER = 0;
+
+    private static final int DATE_DIALOG = 0;
 
     private static final String TAG = EditorActivity.class.getSimpleName();
 
@@ -52,11 +53,6 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
     private int mStatusRadioButton;
     String dateFromDatePicker;
 
-    private TaskCursorAdapter mAdapter;
-
-
-    private int getmPriorityRadioButton = TaskContract.TaskEntry.PRIORITY_HIGH;
-    private int getmStatusRadioButton = TaskContract.TaskEntry.STATUS_TODO;
 
     //Boolean flag that keeps track of whether the item has been edited(true) or not(false)
     private boolean mTaskHasChanged = false;
@@ -77,7 +73,6 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
 
         this.setFinishOnTouchOutside(false);
 
@@ -112,12 +107,11 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         mNotesEditText = (EditText) findViewById(R.id.edit_task_note);
         mDateTextView = (TextView) findViewById(R.id.showDate);
 
-
         ((RadioButton) findViewById(R.id.radButton1)).setChecked(true);
         mPriorityRadioButton = 1;
 
         ((RadioButton) findViewById(R.id.radStatusButton1)).setChecked(true);
-        mStatusRadioButton = 2;
+        mStatusRadioButton = 1;
 
         mBtnDate = (Button) findViewById(R.id.btnPicDate);
 
@@ -131,10 +125,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         mDateTextView.setOnTouchListener(mTouchListener);
 
 
-
     }
-
-
 
     //Get user input from editor and save task into database
     private void saveTask() {
@@ -147,7 +138,6 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         String dateString = mDateTextView.getText().toString().trim();
 
 
-
         //Check if this is supposed to be a new task
         //and check if all the fields in the editor are blank
 
@@ -157,7 +147,6 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             //No need to crate ContentValues and no need to do any ContentProvider operations
 
             return;
-
         }
 
         //Create ContentValues objects where columns are the keys, and the attributes from the editor are the values
@@ -171,6 +160,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
 
         //Determine if this is a new or existing task by checking if mCurrentTaskUri is null or not
         if (mCurrentTaskUri == null) {
+
 
             Uri newUri = getContentResolver().insert(TaskContract.TaskEntry.CONTENT_URI, values);
 
@@ -233,10 +223,26 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         switch (item.getItemId()){
             //Respond to a click on the "Save" menu option
             case R.id.action_save:
-                //save task to database
-                saveTask();
-                //exit activity
-                finish();
+
+                if (!mTaskHasChanged){
+
+                    DialogInterface.OnClickListener discardButtonClickListener = new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            //User clicked "Discard" button, close the current activity
+                            finish();
+                        }
+                    };
+
+                    //Show dialog that are unsaved changes
+                    showUnsavedChangesDialog(discardButtonClickListener);
+
+                } else {
+                    //save task to database
+                    saveTask();
+                    //exit activity
+                    finish();
+                }
                 return true;
             //Respond to a click on the "Delete" menu option
             case R.id.action_delete:
@@ -342,8 +348,6 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             int priority = cursor.getInt(priorityColumnIndex);
             int status = cursor.getInt(statusColumnIndex);
 
-            Log.i("PRIORITY", String.valueOf(priority));
-            Log.i("STATUS", String.valueOf(status));
 
             //Update the views on the screen with the values from the database
             mNameEditText.setText(name);
@@ -351,9 +355,6 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             mDateTextView.setText(date);
             mPriorityRadioButton = priority;
             mStatusRadioButton = status;
-
-
-
 
         }
 
@@ -370,7 +371,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
 
     }
 
-    //Show a dialog that warns the user the user there are unsaved changes that will be lost
+    //Show a dialog that warns the user there are unsaved changes that will be lost
 
     private void showUnsavedChangesDialog(DialogInterface.OnClickListener discardButtonClickListener){
         //Create an AlertDialog.Builder and set the message, and click listeners
@@ -439,29 +440,21 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         month_x = calendar.get(Calendar.MONTH);
         day_x = calendar.get(Calendar.DAY_OF_MONTH);
 
-
-        //String today = java.text.DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
-
-
-
-
-
-
         DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+
+
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
 
-                dateFromDatePicker = String.valueOf(month+1) + "/" + String.valueOf(day) + "/" + String.valueOf(year);
+                dateFromDatePicker = String.valueOf(month + 1) + "/" + String.valueOf(day) + "/" + String.valueOf(year);
 
                 mDateTextView.setText(dateFromDatePicker);
-
-
             }
         }
-                ,year_x, month_x,day_x);
+                , year_x, month_x, day_x);
+
 
         datePickerDialog.show();
-
 
 
     }

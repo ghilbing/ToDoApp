@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:padding="@dimen/fab_margin"
     tools:context="com.example.gretel.todoapp.EditorActivity">
 
 
@@ -11,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
+
         android:orientation="horizontal">
 
 
@@ -20,6 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="sans-serif-medium"
+            android:text="Tarea"
             android:textAppearance="?android:textAppearanceMedium"
             android:textColor="#2B3D4D" />
 
@@ -30,7 +33,38 @@
             android:layout_weight="1"
             android:fontFamily="sans-serif"
             android:gravity="right"
+            android:text="LOW"
             android:textAppearance="?android:textAppearanceMedium" />
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/notes"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:fontFamily="sans-serif-medium"
+        android:text="Example of notes"
+        android:textColor="@color/colorGrey"
+        android:textAppearance="?android:textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:fontFamily="sans-serif-medium"
+        android:text="08-17-2017"
+        android:gravity="right"
+        android:textColor="@color/colorGrey"
+        android:textAppearance="?android:textAppearanceMedium" />
 
     </LinearLayout>
 

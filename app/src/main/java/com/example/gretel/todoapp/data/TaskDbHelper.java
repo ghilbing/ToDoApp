@@ -2,6 +2,7 @@ package com.example.gretel.todoapp.data;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 
 /**
@@ -39,6 +40,13 @@ public class TaskDbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+
+        try {
+            sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TaskContract.TaskEntry.TABLE_NAME);
+        }catch (SQLiteException e){
+
+        }
+        onCreate(sqLiteDatabase);
 
     }
 

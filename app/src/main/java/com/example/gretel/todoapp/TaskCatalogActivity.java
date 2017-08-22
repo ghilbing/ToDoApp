@@ -89,14 +89,11 @@ public class TaskCatalogActivity extends AppCompatActivity implements LoaderMana
         //Create a ContentValues object where column are the keys
 
         ContentValues values = new ContentValues();
-
-
         values.put(TaskContract.TaskEntry.TASK_NAME, "Go to the supermarket");
-        values.put(TaskContract.TaskEntry.NOTES, "Butter, Milk, Cheese, Fruits");
+        values.put(TaskContract.TaskEntry.NOTES, "Butter, Milk, Fruits");
         values.put(TaskContract.TaskEntry.DUE_DATE, "08/20/2017");
         values.put(TaskContract.TaskEntry.PRIORITY, TaskContract.TaskEntry.PRIORITY_MEDIUM);
         values.put(TaskContract.TaskEntry.STATUS, TaskContract.TaskEntry.STATUS_TODO);
-
 
         //Insert a new row into the provider using ContentResolver
         //Receive the new content URI that will allow us to access new row data in the future
@@ -145,8 +142,11 @@ public class TaskCatalogActivity extends AppCompatActivity implements LoaderMana
         String[] projection = {
                 TaskContract.TaskEntry._ID,
                 TaskContract.TaskEntry.TASK_NAME,
+                TaskContract.TaskEntry.NOTES,
                 TaskContract.TaskEntry.PRIORITY,
-                TaskContract.TaskEntry.STATUS
+                TaskContract.TaskEntry.STATUS,
+                TaskContract.TaskEntry.DUE_DATE
+
         };
 
         //This loader will execute the ContentProvider's query method on a background thread

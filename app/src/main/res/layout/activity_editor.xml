@@ -30,9 +30,6 @@
             android:orientation="horizontal">
 
             <!-- Label -->
-            <TextView
-                android:text="@string/category_overview"
-                style="@style/CategoryStyle" />
 
             <!-- Input fields -->
             <LinearLayout
@@ -68,12 +65,6 @@
             android:orientation="horizontal">
 
             <!--Label -->
-            <TextView
-                android:text="@string/due_date"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                style="@style/CategoryStyle" />
 
             <TextView
                 android:id="@+id/showDate"
@@ -92,12 +83,13 @@
                 android:layout_weight="1"
                 android:drawableLeft="@android:drawable/ic_menu_my_calendar"
                 android:onClick="datePicker"
-                android:text="" />
+                android:text="@string/pick_date" />
 
         </LinearLayout>
 
         <!-- Priority -->
-        <LinearLayout
+
+    <LinearLayout
             android:id="@+id/container_priority"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -105,9 +97,10 @@
 
             <!-- Label -->
             <TextView
-                android:text="@string/category_priority"
                 style="@style/CategoryStyle"
-                android:paddingBottom="16dp"/>
+                android:paddingBottom="16dp"
+                android:text="@string/category_priority"
+                android:textSize="@dimen/fab_margin" />
 
 
         </LinearLayout>
@@ -146,7 +139,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@color/materialBlue"
+            android:background="@color/materialOrange"
             android:capitalize="sentences"
             android:onClick="onPrioritySelected"
             android:text="@string/med_priority"
@@ -159,7 +152,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@color/materialGreen"
+            android:background="@color/materialYellow"
             android:capitalize="sentences"
             android:onClick="onPrioritySelected"
             android:text="@string/low_priority"
@@ -213,9 +206,10 @@
 
         <!-- Label -->
         <TextView
-            android:text="@string/status"
             style="@style/CategoryStyle"
-            android:paddingBottom="16dp"/>
+            android:paddingBottom="16dp"
+            android:text="@string/status"
+            android:textSize="@dimen/fab_margin" />
 
         </LinearLayout>
 

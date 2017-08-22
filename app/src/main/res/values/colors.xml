@@ -18,9 +18,13 @@
     <color name="editorColorPrimaryDark">#394450</color>
 
 
-    <!-- colors for task priority selection -->
+    <!-- colors for task priority and status selection -->
     <color name="materialRed">#E74C3C</color>
-    <color name="materialBlue">#5677FC</color>
-    <color name="materialGreen">#689F38</color>
+    <color name="materialOrange">#FF9800</color>
+    <color name="materialYellow">#FFD600</color>
+    <color name="materialGreen">#4CAF50</color>
+
+    <!-- color for date in listview -->
+    <color name="colorGrey">#BDBDBD</color>
 
 </resources>
