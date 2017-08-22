@@ -6,7 +6,7 @@ ToDo App for CodePath at Facebook
 
 Submitted by: **Margarita Hilbing**
 
-Time spent: **120** hours spent in total
+Time spent: **90** hours spent in total
 
 ## User Stories
 
